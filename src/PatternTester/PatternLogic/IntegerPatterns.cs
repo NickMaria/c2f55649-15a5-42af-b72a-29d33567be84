@@ -1,39 +1,87 @@
-﻿namespace PatternLogic
+﻿using System.Text;
+
+namespace PatternLogic
 {
     public class IntegerPatterns : IIntegerPatterns
     {
-        public async Task<List<int>> FindLongestIncreasingSubsequence(List<int> numbers)
+        public async Task<string> FindLongestIncreasingSubsequence(string numbersList)
         {
-            var result = new List<int>();
+            var numbers = new List<int>();
 
             try
             {
-                // Longest Increasing Subsequence - lis
-                int[] lis = new int[numbers.Count];
-                int[] previous = new int[numbers.Count];
+                // Convert the input string to a list of integers
+                var parsedNumbers = numbersList.Split(' ').Select(int.Parse);
+                numbers = parsedNumbers.ToList();
+            }
+            catch (Exception argEx)
+            {
+                Console.WriteLine(argEx);
+                throw new ArgumentException("Input is invalid");
+            }
+
+            List<int> numberListResult;
+
+            try
+            {
+                numberListResult = await FindLongestIncreasingSubsequence(numbers);
+            }
+            catch (Exception procEx)
+            {
+                Console.WriteLine(procEx);
+                throw;
+            }
+
+            // alter for display output
+            var sb = new StringBuilder();
+            foreach (int number in numberListResult)
+            {
+                sb.Append(number);
+                sb.Append(" ");
+            }
+
+            string result = sb.ToString().Trim();
+
+            return result;
+        }
+
+        public async Task<List<int>> FindLongestIncreasingSubsequence(List<int> numbers)
+        {
+            List<int> longestSequence = new List<int>();
+
+            try
+            {
+                if (numbers == null || numbers.Count == 0)
+                {
+                    return new List<int>();
+                }
+
+                List<int> currentSequence = new List<int>();
 
                 for (int i = 0; i < numbers.Count; i++)
                 {
-                    lis[i] = 1;
-                    previous[i] = -1;
-
-                    for (int j = 0; j < i; j++)
+                    if (i == 0 || numbers[i] > numbers[i - 1])
                     {
-                        if (numbers[i] > numbers[j] && lis[i] < lis[j] + 1)
+                        currentSequence.Add(numbers[i]);
+                    }
+                    else
+                    {
+                        if (currentSequence.Count > longestSequence.Count)
                         {
-                            lis[i] = lis[j] + 1;
-                            previous[i] = j;
+                            longestSequence = new List<int>(currentSequence);
                         }
+                        currentSequence.Clear();
+                        currentSequence.Add(numbers[i]);
                     }
                 }
 
-                int maxLengthIndex = Array.IndexOf(lis, lis.Max());
-
-                while (maxLengthIndex != -1)
+                if (currentSequence.Count > longestSequence.Count)
                 {
-                    result.Insert(0, numbers[maxLengthIndex]);
-                    maxLengthIndex = previous[maxLengthIndex];
+                    longestSequence = new List<int>(currentSequence);
                 }
+
+
+
             }
             catch (Exception ex)
             {
@@ -41,7 +89,7 @@
                 throw;
             }
 
-            return result;
+            return longestSequence;
         }
 
     }

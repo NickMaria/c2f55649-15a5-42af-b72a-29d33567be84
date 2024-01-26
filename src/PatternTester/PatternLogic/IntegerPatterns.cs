@@ -85,7 +85,7 @@ namespace PatternLogic
                 throw;
             }
 
-            return longestSequence;
+            return await Task.Run(() => longestSequence);
         }
 
     }

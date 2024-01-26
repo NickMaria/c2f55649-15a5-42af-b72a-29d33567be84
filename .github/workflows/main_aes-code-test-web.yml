@@ -31,13 +31,14 @@ jobs:
         working-directory: src/PatternTester
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/src/PatternTester/PatternTester/PatternTester.csproj
+        run: dotnet publish ./src/PatternTester/PatternTester/PatternTester.csproj -c Release -o published
+        working-directory: ./src/PatternTester/PatternTester
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/src/PatternTester/PatternTester/PatternTester.csproj
+          path: ./src/PatternTester/PatternTester/published
 
   deploy:
     runs-on: windows-latest

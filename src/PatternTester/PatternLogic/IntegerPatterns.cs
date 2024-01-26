@@ -69,6 +69,7 @@ namespace PatternLogic
                         {
                             longestSequence = new List<int>(currentSequence);
                         }
+
                         currentSequence.Clear();
                         currentSequence.Add(numbers[i]);
                     }
@@ -87,6 +88,5 @@ namespace PatternLogic
 
             return await Task.Run(() => longestSequence);
         }
-
     }
 }

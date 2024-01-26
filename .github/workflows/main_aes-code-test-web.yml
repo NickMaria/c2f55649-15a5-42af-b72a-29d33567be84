@@ -22,8 +22,11 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Restore NuGet packages
+        run: nuget restore PatternTester.sln
+
+      - name: Build with dotnet - release config
+        run: dotnet build PatternTester.sln --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/PatternTester

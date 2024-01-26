@@ -14,3 +14,9 @@ Working web test harness url: https://aes-code-test-web.azurewebsites.net/
 - Solution containerisation using Docker
 - Code linting
 - Code coverage reporting
+
+#### Remaining Items
+- Solution containerisation using Docker
+- Code linting: Preference is StyleCop (https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
+- Code coverage reporting: Preference is Code Coverage Summary (https://github.com/marketplace/actions/code-coverage-summary)
+

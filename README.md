@@ -1,2 +1,16 @@
-# c2f55649-15a5-42af-b72a-29d33567be84
-Code test
+# Coding Test
+
+Working web test harness url: https://aes-code-test-web.azurewebsites.net/
+
+## Objective
+- Translate a problem into a working solution
+- Demonstrate clear understanding of C# .NET.
+- Communicate solution using clean code that is easy to read/understand
+- Demonstrate ability to unit test code
+- Provide clear instructions on how to verify solution
+
+### Stretch goals
+- Continuous integration of solution using Github actions 
+- Solution containerisation using Docker
+- Code linting
+- Code coverage reporting

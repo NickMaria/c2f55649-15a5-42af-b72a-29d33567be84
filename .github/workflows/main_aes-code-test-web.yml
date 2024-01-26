@@ -23,10 +23,10 @@ jobs:
           include-prerelease: true
 
       - name: Restore NuGet packages
-        run: nuget restore PatternTester/PatternTester.sln
+        run: nuget restore ${{env.DOTNET_ROOT}}/PatternTester/PatternTester.sln
 
       - name: Build with dotnet - release config
-        run: dotnet build PatternTester/PatternTester.sln --configuration Release
+        run: dotnet build ${{env.DOTNET_ROOT}}/PatternTester/PatternTester.sln --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/PatternTester

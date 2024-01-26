@@ -1,36 +1,35 @@
-﻿using System.Text;
+﻿using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace PatternLogic
 {
     public class IntegerPatterns : IIntegerPatterns
     {
+        private readonly ILogger _logger;
+
+        public IntegerPatterns(ILogger<IntegerPatterns> logger)
+        {
+            _logger = logger;
+        }
+
         public async Task<string> FindLongestIncreasingSubsequence(string numbersList)
         {
-            var numbers = new List<int>();
+            _logger.LogInformation("IntegerPatterns.FindLongestIncreasingSubsequence called.");
 
+            var numbers = new List<int>();
             try
             {
                 // Convert the input string to a list of integers
                 var parsedNumbers = numbersList.Split(' ').Select(int.Parse);
                 numbers = parsedNumbers.ToList();
             }
-            catch (Exception argEx)
+            catch (Exception ex)
             {
-                Console.WriteLine(argEx);
+                _logger.LogError(ex, "IntegerPatterns.FindLongestIncreasingSubsequence: Parsing user input numbers failed");
                 throw new ArgumentException("Input is invalid");
             }
 
-            List<int> numberListResult;
-
-            try
-            {
-                numberListResult = await FindLongestIncreasingSubsequence(numbers);
-            }
-            catch (Exception procEx)
-            {
-                Console.WriteLine(procEx);
-                throw;
-            }
+            List<int> numberListResult = await FindLongestIncreasingSubsequence(numbers);
 
             // alter for display output
             var sb = new StringBuilder();
@@ -79,13 +78,10 @@ namespace PatternLogic
                 {
                     longestSequence = new List<int>(currentSequence);
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                _logger.LogError(ex, "IntegerPatterns.FindLongestIncreasingSubsequence: Processing list numbers failed");
                 throw;
             }
 

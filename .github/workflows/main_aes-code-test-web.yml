@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - aes-code-test-web
+name: Build App - Run Tests - Deploy Azure - aes-code-test-web
 
 on:
   push:
@@ -23,10 +23,10 @@ jobs:
           include-prerelease: true
 
       - name: Restore NuGet packages
-        run: nuget restore PatternTester.sln
+        run: nuget restore PatternTester/PatternTester.sln
 
       - name: Build with dotnet - release config
-        run: dotnet build PatternTester.sln --configuration Release
+        run: dotnet build PatternTester/PatternTester.sln --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/PatternTester

@@ -1,7 +1,12 @@
+using PatternLogic;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// add injected service
+builder.Services.AddTransient<IIntegerPatterns, IntegerPatterns>();
 
 var app = builder.Build();
 

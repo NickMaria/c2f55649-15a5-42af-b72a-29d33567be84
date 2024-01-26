@@ -4,7 +4,81 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-black">
+    <h1 class="display-4">Test Harness</h1>
 </div>
+
+<div class="text-body">
+    <div class="font-weight-normal">
+        <p>
+            Simple function that takes one string input of any number of integers separated by single whitespace.
+        </p>
+        <p>
+            The function then outputs the longest increasing subsequence (increased by any number) present in that sequence.
+        </p>
+        <p>
+            If more than 1 sequence exists with the longest length, output the earliest one.
+        </p>
+    </div>
+</div>
+
+<hr />
+
+<form method="post">
+    <div class="form-group">
+        <label for="inputIntegerList">Enter your Input Integer List:</label>
+        <textarea class="form-control" id="inputIntegerList" name="inputIntegerList" rows="6">@Model.InputIntegerList</textarea>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary" id="clearButton" onclick="clearTextArea()">Clear</button>
+
+    <br />
+    <br />
+
+    <div class="form-group">
+        <label for="outputIntegerList">Result list:</label>
+        <textarea class="form-control" id="outputIntegerList" name="outputIntegerList" rows="4" disabled="disabled">@Model.OutputIntegerList</textarea>
+    </div>
+
+
+</form>
+
+<br />
+<hr />
+<br />
+
+<div class="text-body">
+    <div class="font-weight-normal">
+        <h6>Test examples:</h6>
+        <div class="card col-3">
+            <strong>Input: </strong>
+            6 2 4 6 1 5 9 2
+            <strong>Output:</strong>
+            2 4 6
+        </div>
+        <br />
+        <div class="card col-3">
+            <strong>Input: </strong>
+            6 2 4 3 1 5 9
+            <strong>Output:</strong>
+            1 5 9
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // JavaScript to clear the textarea when the "Clear" button is clicked.
+        function clearTextArea() {
+            document.getElementById("inputIntegerList").value = "";
+            document.getElementById("outputIntegerList").value = "";
+        }
+    </script>
+}
+
+
+
+

@@ -22,20 +22,26 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: Restore NuGet packages
-        run: nuget restore ${{env.DOTNET_ROOT}}/PatternTester/PatternTester.sln
-
-      - name: Build with dotnet - release config
-        run: dotnet build ${{env.DOTNET_ROOT}}/PatternTester/PatternTester.sln --configuration Release
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: PatternTester   
+  
+      - name: Build
+        run: dotnet build --no-restore -c Release
+        working-directory: PatternTester  
+  
+      - name: Test
+        run: dotnet test --no-restore
+        working-directory: PatternTester   
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/PatternTester
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/PatternTester
+          path: ${{env.DOTNET_ROOT}}
 
   deploy:
     runs-on: windows-latest

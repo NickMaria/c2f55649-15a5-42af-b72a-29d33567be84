@@ -24,15 +24,15 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: PatternTester   
+        working-directory: src/PatternTester   
   
       - name: Build
         run: dotnet build --no-restore -c Release
-        working-directory: PatternTester  
+        working-directory: src/PatternTester  
   
       - name: Test
         run: dotnet test --no-restore
-        working-directory: PatternTester   
+        working-directory: src/PatternTester   
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}

@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		READ_ME.txt = READ_ME.txt
+		Task_Requirements.md = Task_Requirements.md
 	EndProjectSection
 EndProject
 Global

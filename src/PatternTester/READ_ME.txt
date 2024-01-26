@@ -1,25 +1,18 @@
-# Coding Test
 
-## Objective
-- Translate a problem into a working solution
-- Demonstrate clear understanding of C# .NET.
-- Communicate solution using clean code that is easy to read/understand
-- Demonstrate ability to unit test code
-- Provide clear instructions on how to verify solution
-
-### Stretch goals
-- Continuous integration of solution using Github actions 
-- Solution containerisation using Docker
-- Code linting
-- Code coverage reporting
+Project Modules 
+---------------
+PatternTester - web application test harness
+PatternLogic - contains business logic for Integer List testing
+PatternUnitTests - contains unit tests to verify PatternLogic module "IntegerPatterns" service methods
 
 
-===============================================================================
+=======================================================================================================
 
+To Run locally
+--------------
 
+1. Set the PatternTester project as the "Startup Project" in Visual Studio
+2. Run application with development server - IIS Express  
+3. Web application will start, and able to be used to test 
 
-
-
-
-
-
+=======================================================================================================

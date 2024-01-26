@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}
-        working-directory: src/PatternTester/PatternTester/bin/Release/net6.0
+        working-directory: src/PatternTester/PatternTester
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
